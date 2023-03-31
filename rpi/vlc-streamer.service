@@ -1,0 +1,16 @@
+[Unit]
+Description=VLC Streamer
+
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+
+[Service]
+User=stefan
+
+Restart=always
+RestartSec=5s
+
+ExecStart=/usr/bin/cvlc --http-caching=0 --fullscreen --play-and-exit http://admin:admin@192.168.0.178:8081/ vlc://quit
+
+[Install]
+WantedBy=multi-user.target
